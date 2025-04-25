@@ -1,0 +1,12 @@
+{
+  "actions": {
+    "user": {
+      "validation": {
+        "id": "ID do usuário não informado"
+      },
+      "error": {
+        "getUser": "Falha ao obter o perfil do usuário"
+      }
+    }
+  }
+}
