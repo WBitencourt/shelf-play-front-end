@@ -1,18 +1,18 @@
 # Shelf play front end
 
-🎬 Shelf Play — Seu universo de filmes e séries organizado do seu jeito!
+🎬 Shelf Play — Your movies and series organized your way!
 
-O Shelf Play é um aplicativo que conecta você à base de dados da IMDb, permitindo buscar qualquer filme ou série e organizá-los em estantes virtuais personalizadas.
-Com ele, você pode criar coleções como "Filmes que Amo", "Séries para Maratonar", "Assistir com Amigos" e muito mais — tudo de forma prática, visual e personalizada.
+Shelf Play is an app that connects you to the IMDb database. You can search for any movie or series and organize them into personalized virtual shelves.
+Create collections like "Movies I Love," "Series to Binge," "Watch with Friends," and much more — in a simple, visual, and personal way.
 
-📚 Principais funcionalidades:
+📚 Main features:
 
-Busque filmes e séries diretamente da IMDb;
+Search movies and series directly from IMDb;
 
-Crie estantes temáticas do jeito que quiser;
+Create shelves with any theme you want;
 
-Organize suas listas para diferentes momentos da sua vida;
+Organize your lists for different moments in life;
 
-Tenha sempre suas obras favoritas na ponta dos dedos.
+Always have your favorite titles close to you.
 
-O Shelf Play transforma sua paixão por filmes e séries em uma experiência única de organização e descoberta!
+Shelf Play turns your love for movies and series into a unique organization and discovery experience!
