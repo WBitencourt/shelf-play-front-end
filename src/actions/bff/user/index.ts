@@ -19,7 +19,7 @@ interface GetUserAction {
 
 const getUserAction = async (params: GetUserAction): Promise<User> => {
   try {
-    const safeActionResult: SafeActionResult<User> = await getUserSafeAction(params);
+    const safeActionResult = await getUserSafeAction(params) as SafeActionResult<User>;
   
     const data: ActionResultData<User> | null = util.getActionResultData(safeActionResult);
 

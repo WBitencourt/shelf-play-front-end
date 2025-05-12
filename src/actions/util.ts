@@ -16,7 +16,6 @@ export interface ActionResultData<T> {
 }
 
 export interface SafeActionResult<T> {
-  success: boolean;
   data: ActionResultData<T>;
   validationErrors?: ValidationErrors
 }

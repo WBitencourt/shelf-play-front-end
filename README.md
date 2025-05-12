@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Shelf play front end
 
 🎬 Shelf Play — Your movies and series organized your way!
@@ -16,3 +17,6 @@ Organize your lists for different moments in life;
 Always have your favorite titles close to you.
 
 Shelf Play turns your love for movies and series into a unique organization and discovery experience!
+=======
+# shelf-play-front-end.
+>>>>>>> ce2ae8b (delete path components)

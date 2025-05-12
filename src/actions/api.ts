@@ -7,27 +7,31 @@ const apiAuthenticated = async (input: string, options: RequestInit | undefined 
   
   try {    
     const cookieStore = await cookies()
-    const accessToken = cookieStore.get('everest_server.access_token')
+    const accessToken = cookieStore.get('shelf-play-server.access_token')
 
     options.headers = {
       ...options.headers,
-      'Authorization': accessToken?.value ?? '',
+      'Authorization': `Bearer ${accessToken?.value ?? ''}`,
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
 
     return await fetch(finalUrl, options);
-  } catch (error: any) {
-    const genericMessageError = `HTTP Error ${options?.method}: ${finalUrl}`;
+  } catch (error) {
+    if(error instanceof Error) {
+      throw new Error(`HTTP ${options?.method} ${finalUrl} - ${error?.message}`);
+    }
   
-    throw new Error(error?.message ?? genericMessageError);
+    throw error;
   }
 }
 
 const apiSendFile = async (url: string, options: RequestInit | undefined = {}): Promise<Response> => {
+  const finalUrl = url.includes('://') ? url : baseUrl + url;
+
   try {    
     const cookieStore = await cookies()
-    const accessToken = cookieStore.get('everest_server.access_token')
+    const accessToken = cookieStore.get('shelf-play-server.access_token')
 
     options.headers = {
       ...options.headers,
@@ -35,15 +39,19 @@ const apiSendFile = async (url: string, options: RequestInit | undefined = {}): 
       'Accept': 'application/json',
     };
 
-    const finalUrl = url.includes('://') ? url : baseUrl + url;
-
     return await fetch(finalUrl, options);
   } catch (error) {
+    if(error instanceof Error) {
+      throw new Error(`HTTP ${options?.method} ${finalUrl} - ${error?.message}`);
+    }
+  
     throw error;
   }
 }
 
 const apiNoAuthentication = async (url: string, options: RequestInit | undefined = {}): Promise<Response> => {
+  const finalUrl = url.includes('://') ? url : baseUrl + url;
+
   try {    
     options.headers = {
       ...options.headers,
@@ -51,18 +59,23 @@ const apiNoAuthentication = async (url: string, options: RequestInit | undefined
       'Accept': 'application/json',
     };
 
-    const finalUrl = url.includes('://') ? url : baseUrl + url;
-
     return await fetch(finalUrl, options);
   } catch (error) {
+    if(error instanceof Error) {
+      throw new Error(`HTTP ${options?.method} ${finalUrl} - ${error?.message}`);
+    }
+  
     throw error;
   }
 }
 
+
 const apiLogout = async (input: string, options: RequestInit | undefined = {}): Promise<Response> => {
+  const finalUrl = input.includes('://') ? input : baseUrl + input;
+
   try {    
     const cookieStore = await cookies()
-    const accessToken = cookieStore.get('everest_server.access_token')
+    const accessToken = cookieStore.get('shelf-play_server.access_token')
 
     options.headers = {
       ...options.headers,
@@ -70,8 +83,6 @@ const apiLogout = async (input: string, options: RequestInit | undefined = {}): 
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
-
-    const finalUrl = input.includes('://') ? input : baseUrl + input;
 
     const response = await fetch(finalUrl, options);
 
@@ -89,6 +100,10 @@ const apiLogout = async (input: string, options: RequestInit | undefined = {}): 
 
     return response;
   } catch (error) {
+    if(error instanceof Error) {
+      throw new Error(`HTTP ${options?.method} ${finalUrl} - ${error?.message}`);
+    }
+  
     throw error;
   }
 }
@@ -106,9 +121,15 @@ const json = async (response: Response) => {
     return {
       message: `${httpMessage} - ${text}`,
     }
-  } catch (error: any) {
+  } catch (error) {
+    if(error instanceof Error) {
+      return {
+        message: `${httpMessage} - ${error?.message}`,
+      }
+    }
+
     return {
-      message: `${httpMessage} - ${error?.message}`,
+      message: 'Falha ao processar a resposta da API.',
     }
   }
 }
